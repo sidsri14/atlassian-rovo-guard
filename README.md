@@ -5,6 +5,7 @@
 [![Model Context Protocol](https://img.shields.io/badge/Protocol-MCP%20JSON--RPC-8A2BE2.svg)](https://modelcontextprotocol.io/)
 [![Tests: 10/10 Passing](https://img.shields.io/badge/tests-10%2F10%20passing-brightgreen.svg)](test/)
 [![Hackathon: Codegeist 2026](https://img.shields.io/badge/Devpost-Codegeist%202026-blue.svg)](https://devpost.com)
+[![Demo Video: YouTube](https://img.shields.io/badge/YouTube-Demo%20Video-red.svg)](https://youtu.be/J1JV_ahWWzw)
 
 **Atlassian Forge Rovo Agent & Model Context Protocol (MCP) Circuit Breaker for Autonomous Jira & Bitbucket Engineering Teams.**
 

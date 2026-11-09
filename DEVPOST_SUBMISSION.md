@@ -8,6 +8,7 @@
 * **Bonus 2:** Best Agents (Rovo / Assignable Agents) ($1,500)
 * **Bonus 3:** Best Apps with Teamwork Graph Integration ($1,500)
 **Repository:** [`https://github.com/sidsri14/atlassian-rovo-guard`](https://github.com/sidsri14/atlassian-rovo-guard)  
+**Demo Video (YouTube):** [`https://youtu.be/J1JV_ahWWzw`](https://youtu.be/J1JV_ahWWzw) (1:15 narrated walkthrough)  
 **Author:** Siddharth Srivastava ([@sidsri14](https://github.com/sidsri14))  
 **Email:** `sidsri1502@gmail.com` | **PayPal Payout:** `sidsri1302@gmail.com`  
 
