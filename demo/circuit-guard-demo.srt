@@ -1,0 +1,75 @@
+1
+00:00:00,000 --> 00:00:04,090
+Autonomous software agents in Jira accelerate engineering velocity, but unconstrained
+
+2
+00:00:04,090 --> 00:00:08,180
+agents can enter runaway tool retry loops, burning hundreds of
+
+3
+00:00:08,180 --> 00:00:11,451
+dollars in API credits before human leads notice.
+
+4
+00:00:12,051 --> 00:00:16,687
+Circuit Guard embeds deterministic governance directly into Atlassian Forge. It
+
+5
+00:00:16,687 --> 00:00:21,322
+exposes standard Model Context Protocol tools that Rovo agents must
+
+6
+00:00:21,322 --> 00:00:23,640
+query before initiating expensive actions.
+
+7
+00:00:24,240 --> 00:00:28,446
+Before invoking any external tool, the Rovo agent requests a
+
+8
+00:00:28,446 --> 00:00:32,651
+budget lease. Circuit Guard verifies the issue ceiling, reserves the
+
+9
+00:00:32,651 --> 00:00:34,754
+in-flight commitment, and permits execution.
+
+10
+00:00:35,354 --> 00:00:39,461
+When an agent is stuck on failing steps, Circuit Guard
+
+11
+00:00:39,461 --> 00:00:43,568
+diffs consecutive tool calls. If semantic similarity exceeds eighty-five percent,
+
+12
+00:00:43,568 --> 00:00:47,674
+it immediately trips the circuit breaker fail-closed, preventing runaway costs.
+
+13
+00:00:48,274 --> 00:00:52,950
+Every budget reservation, spend reconciliation, and tripped breaker dispatches real-time
+
+14
+00:00:52,950 --> 00:00:57,627
+events to the Atlassian Teamwork Graph, connecting autonomous agent governance
+
+15
+00:00:57,627 --> 00:00:59,497
+directly with engineering observability.
+
+16
+00:01:00,097 --> 00:01:04,237
+The complete implementation is verified with ten passing Vitest tests
+
+17
+00:01:04,237 --> 00:01:08,377
+covering governor invariants, MCP protocol tools, and Teamwork Graph synchronization.
+
+18
+00:01:08,377 --> 00:01:12,516
+Circuit Guard is open source at github dot com slash
+
+19
+00:01:12,516 --> 00:01:15,000
+sidsri fourteen slash atlassian rovo guard.

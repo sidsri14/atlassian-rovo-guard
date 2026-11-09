@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Atlassian Circuit Guard — Autonomous Rovo Agent Governance HUD</title>
+  <style>
+    :root {
+      --bg: #0b101b;
+      --card-bg: #151d2f;
+      --border: #23314d;
+      --accent-blue: #0052cc;
+      --accent-cyan: #00c7e6;
+      --accent-green: #36b37e;
+      --accent-red: #ff5630;
+      --accent-amber: #ffab00;
+      --text: #f4f5f7;
+      --text-muted: #8993a4;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; }
+    body { background: var(--bg); color: var(--text); padding: 24px; min-height: 100vh; }
+    .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 24px; }
+    .logo-badge { display: flex; align-items: center; gap: 12px; }
+    .logo-badge h1 { font-size: 20px; font-weight: 700; color: #fff; }
+    .logo-badge span { background: var(--accent-blue); padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
+    .meta-tag { background: #1c273e; padding: 6px 12px; border-radius: 6px; font-size: 13px; color: var(--text-muted); border: 1px solid var(--border); }
+    
+    .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+    .card-title { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
+    
+    .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+    .stat-box { background: #0e1524; border: 1px solid var(--border); border-radius: 6px; padding: 12px; text-align: center; }
+    .stat-val { font-size: 22px; font-weight: 700; margin-top: 4px; }
+    .stat-lbl { font-size: 11px; color: var(--text-muted); text-transform: uppercase; }
+    
+    .status-pill { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+    .pill-green { background: rgba(54, 179, 126, 0.2); color: var(--accent-green); border: 1px solid var(--accent-green); }
+    .pill-red { background: rgba(255, 86, 48, 0.2); color: var(--accent-red); border: 1px solid var(--accent-red); }
+    
+    .btn-group { display: flex; gap: 10px; margin-top: 16px; }
+    button { background: #202d45; color: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    button:hover { background: #2c3e5f; border-color: var(--accent-cyan); }
+    button.primary { background: var(--accent-blue); border-color: var(--accent-blue); }
+    button.primary:hover { background: #0065ff; }
+    button.danger { background: rgba(255, 86, 48, 0.2); border-color: var(--accent-red); color: var(--accent-red); }
+    button.danger:hover { background: rgba(255, 86, 48, 0.3); }
+    
+    .log-box { background: #0a0e17; border: 1px solid var(--border); border-radius: 6px; padding: 12px; height: 320px; overflow-y: auto; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 12px; line-height: 1.5; color: #c0c6d0; }
+    .log-item { margin-bottom: 8px; border-bottom: 1px solid #141c2c; padding-bottom: 6px; }
+    .log-time { color: var(--accent-cyan); margin-right: 6px; }
+    .log-pass { color: var(--accent-green); font-weight: 600; }
+    .log-warn { color: var(--accent-amber); font-weight: 600; }
+    .log-trip { color: var(--accent-red); font-weight: 700; }
+    
+    .graph-sync { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-muted); margin-top: 12px; }
+    .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-green); box-shadow: 0 0 8px var(--accent-green); animation: blink 1.5s infinite; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo-badge">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M11.5 2L3 6.5V17.5L11.5 22L20 17.5V6.5L11.5 2Z" stroke="#00C7E6" stroke-width="2"/><path d="M12 7V17M7 10L17 14" stroke="#00C7E6" stroke-width="2"/></svg>
+      <h1>Circuit Guard <span style="font-size: 12px; font-weight: 400; color: var(--text-muted);">| Atlassian Forge MCP Governor</span></h1>
+      <span>Forge Rovo App</span>
+    </div>
+    <div class="meta-tag">Jira Issue: <strong>PROJ-1042</strong> · Assignee: <strong>Rovo Agent</strong></div>
+  </div>
+
+  <div class="grid">
+    <div>
+      <div class="card">
+        <div class="card-title">
+          <span>Real-Time Token Budget & Circuit Breaker</span>
+          <span id="breakerPill" class="status-pill pill-green">ARMED · HEALTHY</span>
+        </div>
+        
+        <div class="stat-row">
+          <div class="stat-box">
+            <div class="stat-lbl">Issue Budget Limit</div>
+            <div class="stat-val">$20.00</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-lbl">Reconciled Spend</div>
+            <div id="statSpend" class="stat-val" style="color: #fff;">$14.20</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-lbl">Active Lease</div>
+            <div id="statLease" class="stat-val" style="color: var(--accent-amber);">$0.00</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-lbl">Remaining Ceiling</div>
+            <div id="statRem" class="stat-val" style="color: var(--accent-cyan);">$5.80</div>
+          </div>
+        </div>
+
+        <div style="background: #0e1524; border: 1px solid var(--border); border-radius: 6px; padding: 14px; margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px;">
+            <span>Budget Consumption</span>
+            <span id="pctText">71.0%</span>
+          </div>
+          <div style="background: #1c273e; height: 10px; border-radius: 5px; overflow: hidden;">
+            <div id="progressBar" style="background: linear-gradient(90deg, #0052cc, #00c7e6); width: 71%; height: 100%; transition: width 0.3s;"></div>
+          </div>
+        </div>
+
+        <div class="card-title" style="margin-top: 20px;">
+          <span>Simulate Rovo Agent Tool Actions (MCP Server RPC)</span>
+        </div>
+        
+        <div class="btn-group">
+          <button class="primary" onclick="runSafeAction()">1. Safe Action ($1.20 lease)</button>
+          <button class="danger" onclick="runLoopAction()">2. Failing Loop (Jaccard &gt; 85%)</button>
+          <button class="danger" onclick="runOverdrawAction()">3. Overdraw Breach ($6.00)</button>
+          <button onclick="resetSim()">Reset</button>
+        </div>
+
+        <div class="graph-sync">
+          <div class="pulse"></div>
+          <span>Atlassian Teamwork Graph Sync Active · Node ID: <code>ari:cloud:teamwork::node/rovo-guard-proj-1042</code></span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <div class="card-title">
+          <span>MCP JSON-RPC Audit Stream</span>
+          <span style="font-size: 11px; color: var(--accent-cyan);">PORT: 9222</span>
+        </div>
+        
+        <div id="auditLog" class="log-box">
+          <div class="log-item"><span class="log-time">[00:00:01]</span> <span class="log-pass">INIT</span> Governor instantiated for issue PROJ-1042 (Ceiling: $20.00)</div>
+          <div class="log-item"><span class="log-time">[00:00:03]</span> <span class="log-pass">MCP:check_issue_budget_lease</span> Lease granted ($14.20 total spend committed)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let spent = 14.20;
+    let limit = 20.00;
+    let loopCount = 0;
+    let tripped = false;
+
+    function addLog(type, msg) {
+      const box = document.getElementById('auditLog');
+      const time = new Date().toTimeString().split(' ')[0];
+      const div = document.createElement('div');
+      div.className = 'log-item';
+      let tag = 'log-pass';
+      if (type === 'WARN') tag = 'log-warn';
+      if (type === 'TRIP') tag = 'log-trip';
+      div.innerHTML = `<span class="log-time">[${time}]</span> <span class="${tag}">${type}</span> ${msg}`;
+      box.appendChild(div);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function updateUi() {
+      const rem = Math.max(0, limit - spent);
+      const pct = Math.min(100, (spent / limit) * 100);
+      document.getElementById('statSpend').innerText = '$' + spent.toFixed(2);
+      document.getElementById('statRem').innerText = '$' + rem.toFixed(2);
+      document.getElementById('pctText').innerText = pct.toFixed(1) + '%';
+      const bar = document.getElementById('progressBar');
+      bar.style.width = pct + '%';
+      if (tripped) {
+        bar.style.background = 'var(--accent-red)';
+        const pill = document.getElementById('breakerPill');
+        pill.className = 'status-pill pill-red';
+        pill.innerText = 'TRIPPED · FAIL-CLOSED';
+      }
+    }
+
+    function runSafeAction() {
+      if (tripped) {
+        addLog('TRIP', 'MCP tool call blocked: Circuit breaker is currently TRIPPED.');
+        return;
+      }
+      spent += 1.20;
+      addLog('PASS', 'MCP:check_issue_budget_lease granted ($1.20). Teamwork Graph synced.');
+      updateUi();
+    }
+
+    function runLoopAction() {
+      if (tripped) {
+        addLog('TRIP', 'Execution blocked: Circuit breaker is active.');
+        return;
+      }
+      loopCount++;
+      if (loopCount < 2) {
+        addLog('WARN', 'detect_trajectory_loop: Repeated action signature detected (Jaccard: 72%). Warning issued.');
+      } else {
+        tripped = true;
+        addLog('TRIP', 'HALT: Trajectory stagnation confirmed (Jaccard: 89% &ge; 85%). Circuit breaker tripped fail-closed!');
+        addLog('TRIP', 'Teamwork Graph notified: Issue PROJ-1042 flagged for human lead review.');
+      }
+      updateUi();
+    }
+
+    function runOverdrawAction() {
+      if (tripped) {
+        addLog('TRIP', 'Execution blocked: Circuit breaker is active.');
+        return;
+      }
+      addLog('TRIP', 'REJECTED: Requested lease ($6.00) exceeds remaining ceiling ($' + (limit - spent).toFixed(2) + '). Fail-closed.');
+      tripped = true;
+      updateUi();
+    }
+
+    function resetSim() {
+      spent = 14.20;
+      loopCount = 0;
+      tripped = false;
+      const bar = document.getElementById('progressBar');
+      bar.style.background = 'linear-gradient(90deg, #0052cc, #00c7e6)';
+      const pill = document.getElementById('breakerPill');
+      pill.className = 'status-pill pill-green';
+      pill.innerText = 'ARMED · HEALTHY';
+      document.getElementById('auditLog').innerHTML = '';
+      addLog('INIT', 'Simulation reset to baseline state.');
+      updateUi();
+    }
+  </script>
+</body>
+</html>
