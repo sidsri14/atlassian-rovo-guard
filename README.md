@@ -10,6 +10,8 @@
 
 Engineered for the Atlassian **Codegeist 2026** Global Hackathon ($120,000+ Prize Pool) on Devpost.
 
+![Atlassian Circuit Guard Architecture](assets/circuit-guard-banner.svg)
+
 ---
 
 ## 1. The Problem in Autonomous Agentic Engineering
