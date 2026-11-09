@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1426" />
+      <stop offset="100%" stop-color="#030712" />
+    </linearGradient>
+    <linearGradient id="atlassian" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0052cc" />
+      <stop offset="100%" stop-color="#2684ff" />
+    </linearGradient>
+    <linearGradient id="mcp" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)" />
+
+  <!-- Grid decoration -->
+  <g stroke="#1e293b" stroke-width="1" opacity="0.3">
+    <line x1="0" y1="100" x2="1200" y2="100" />
+    <line x1="0" y1="200" x2="1200" y2="200" />
+    <line x1="0" y1="300" x2="1200" y2="300" />
+    <line x1="0" y1="400" x2="1200" y2="400" />
+    <line x1="0" y1="500" x2="1200" y2="500" />
+    <line x1="300" y1="0" x2="300" y2="630" />
+    <line x1="600" y1="0" x2="600" y2="630" />
+    <line x1="900" y1="0" x2="900" y2="630" />
+  </g>
+
+  <!-- Title Badge -->
+  <rect x="100" y="90" width="300" height="38" rx="19" fill="#1e293b" stroke="#0052cc" stroke-width="1.5" />
+  <text x="250" y="114" fill="#2684ff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" text-anchor="middle" letter-spacing="1">ATLASSIAN CODEGEIST 2026</text>
+
+  <!-- Main Headline -->
+  <text x="100" y="210" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="56" font-weight="800">
+    Circuit Guard for Jira &amp; Rovo
+  </text>
+  <text x="100" y="260" fill="url(#atlassian)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="600">
+    Atlassian Forge Rovo Agent &amp; Model Context Protocol (MCP) Circuit Breaker
+  </text>
+
+  <text x="100" y="320" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18">
+    Pre-checks atomic budget leases, halts trajectory retry loops, and syncs governance to Teamwork Graph.
+  </text>
+
+  <!-- Stat Cards -->
+  <g transform="translate(100, 380)">
+    <rect width="220" height="120" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+    <text x="24" y="50" fill="url(#atlassian)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="800">Rovo MCP</text>
+    <text x="24" y="85" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14">JSON-RPC 2.0 Server</text>
+  </g>
+
+  <g transform="translate(350, 380)">
+    <rect width="220" height="120" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+    <text x="24" y="50" fill="#10b981" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="800">Atomic</text>
+    <text x="24" y="85" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14">Per-Issue Budget Ceilings</text>
+  </g>
+
+  <g transform="translate(600, 380)">
+    <rect width="220" height="120" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+    <text x="24" y="50" fill="#f59e0b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="800">&gt;85%</text>
+    <text x="24" y="85" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14">Loop Jaccard Detection</text>
+  </g>
+
+  <g transform="translate(850, 380)">
+    <rect width="220" height="120" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+    <text x="24" y="50" fill="url(#mcp)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="800">TWG</text>
+    <text x="24" y="85" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14">Teamwork Graph Telemetry</text>
+  </g>
+
+  <text x="100" y="570" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14">
+    Built for Codegeist 2026 • 10/10 Automated Tests Passing • Author: Siddharth Srivastava (@sidsri14)
+  </text>
+</svg>
