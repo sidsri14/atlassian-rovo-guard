@@ -1,0 +1,30 @@
+{
+  "name": "atlassian-rovo-guard",
+  "version": "1.0.0",
+  "description": "Atlassian Forge Rovo Agent & MCP Circuit Breaker for Autonomous Jira & Bitbucket Engineering Teams.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "atlassian",
+    "codegeist-2026",
+    "atlassian-forge",
+    "rovo-agent",
+    "mcp",
+    "model-context-protocol",
+    "teamwork-graph",
+    "jira",
+    "circuit-breaker"
+  ],
+  "author": "Siddharth Srivastava <sidsri1502@gmail.com> (https://github.com/sidsri14)",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "typescript": "^5.5.2",
+    "vitest": "^1.6.0"
+  }
+}

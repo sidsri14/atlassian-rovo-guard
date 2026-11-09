@@ -1,0 +1,33 @@
+modules:
+  rovo:agent:
+    - key: rovo-circuit-guard-agent
+      name: Circuit Guard Agent
+      description: Autonomous governance agent monitoring Jira issues for runaway tool loops, token budget overruns, and Teamwork Graph sync.
+      conversationStarters:
+        - "Check budget lease for this Jira issue"
+        - "Audit recent comments for runaway agent retry loops"
+        - "Sync current issue telemetry to Teamwork Graph"
+  rovo:mcp:
+    - key: rovo-mcp-governance-server
+      name: Circuit Guard MCP Server
+      description: Exposes circuit breaker governance tools to Rovo agents via Model Context Protocol.
+      function: mcpHandler
+  jira:issuePanel:
+    - key: rovo-circuit-guard-panel
+      title: Circuit Guard Governance
+      icon: https://developer.atlassian.com/platform/forge/images/icons/issue-panel-icon.svg
+      function: panelHandler
+  function:
+    - key: mcpHandler
+      handler: index.mcpHandler
+    - key: panelHandler
+      handler: index.panelHandler
+
+permissions:
+  scopes:
+    - read:jira-work
+    - write:jira-work
+    - storage:app
+
+app:
+  id: ari:cloud:ecosystem::app/atlassian-rovo-guard
