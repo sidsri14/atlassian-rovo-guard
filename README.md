@@ -98,3 +98,5 @@ Test Results:
   * **Bonus Track 1**: Best App with Atlassian MCP (`rovo:mcp` module, $1,500)
   * **Bonus Track 2**: Best Agents (Rovo / Assignable Agents, $1,500)
   * **Bonus Track 3**: Best Apps with Teamwork Graph Integration ($1,500)
+* **Portfolio & Production Kits**: [sidsri14.github.io](https://sidsri14.github.io/)
+* **Contract Engineering ($60/hr)**: [Hire on Upwork](https://www.upwork.com/freelancers/~01f93f1a56b9ef1b8d)
